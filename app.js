@@ -28,7 +28,6 @@ app.get('/search', (req, res) => {
   const searchResults = []
   let showErrorMsg = false
 
-  ////version 4
   // compare search keywords
   for (restaurant of restaurantList.results) {
     const {name, name_en, category, location} = restaurant  // 解構賦值
@@ -45,37 +44,6 @@ app.get('/search', (req, res) => {
   } 
   // render page
   res.render('index', {restaurants: searchResults, keyword, showErrorMsg})
-  // // version 3
-  // for (restaurant of restaurantList.results) {
-  //   const {name, name_en, category, location} = restaurant
-  //   const basicInfo = {name, name_en, category, location}
-  //   for (word of keywordArr) {
-  //     if(Object.values(basicInfo).some(info => info.toLowerCase().includes(word))){
-  //     searchResults.push(restaurant)}
-  //   }
-  // }
-  // res.render('index', {restaurants: searchResults, keyword})
-
-
-  // // version 2
-  // restaurantList.results.forEach(restaurant => {
-  //   const name = restaurant.name.toLowerCase()
-  //   const nameEN = restaurant.name_en.toLowerCase()
-  //   const category = restaurant.category.toLowerCase()
-  //   const location = restaurant.location.toLowerCase()
-    
-  //   for (word of keywordArr) {
-  //     if (name.includes(word) || nameEN.includes(word) || category.includes(word) || location.includes(word)) {
-  //       searchResults.push(restaurant)
-  //     }
-  //   }
-  // })
-  // res.render('index', {restaurants: searchResults, keyword})
-
-
-// //version 1
-  // const searchResults = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()))
-  // res.render('index', {restaurants: searchResults, keyword})
 })
 
 // start and listen on the Express server
