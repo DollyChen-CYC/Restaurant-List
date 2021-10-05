@@ -34,8 +34,9 @@ app.get('/search', (req, res) => {
     const infoArr = [name, name_en, category, location]
     
     for (word of keywordArr) {
-      if (infoArr.some(info => info.toLowerCase().includes(word)))
-        {searchResults.push(restaurant)}
+      if (infoArr.some(info => info.toLowerCase().includes(word)) && !searchResults.includes(restaurant)) {
+        searchResults.push(restaurant)
+      }
     }
   }
   // notify result not found
