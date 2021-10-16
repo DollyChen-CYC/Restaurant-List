@@ -1,9 +1,19 @@
 // required package used in this project
 const express = require('express')
+const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 const app = express()
 const port = 3000
-const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant_list.json')
+const db = mongoose.connection
+
+// connect to mongoDB
+db.on('error', () => {
+  console.log('mongoDB error!')
+})
+db.once('open', () => {
+  console.log('mongoDB connected!')
+})
 
 // setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
@@ -11,6 +21,9 @@ app.set('view engine', 'handlebars')
 
 // setting static files
 app.use(express.static('public'))
+
+// setting body-parser
+app.use(express.urlencoded({ extended: true }))
 
 // routes setting
 app.get('/', (req, res) => {
