@@ -30,8 +30,9 @@
         <!-- Restaurants will be shown here -->
         {{#each restaurants}}
 
-        <a href="/restaurants/{{this.id}}" class="text-secondary">
-          <div class="card mb-3">
+          
+        <div class="card mb-3">
+          <a href="/restaurants/{{this._id}}" class="text-secondary">
             <img class="card-img-top" src="{{this.image}}"
               alt="{{this.name}}">
             <div class="card-body p-3">
@@ -44,8 +45,16 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
             </div>
+          </a>  
+
+          <div class="row actions justify-content-end mb-3 mr-2">
+            <a class="btn btn-sm mr-1 btn-secondary" href="/restaurants/{{this._id}}/edit">Edit</a>
+            <a class="btn btn-sm mr-1 btn-primary" href="/restaurants/{{this._id}}/detail">Detail</a>
+            <a class="btn btn-sm mr-1 btn-danger" href="/restaurants/{{this._id}}/delete">Delete</a>
           </div>
-        </a>
+
+        </div>
+
 
         {{/each}}
         

@@ -3,9 +3,11 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/restaurant-list')
 const app = express()
 const port = 3000
 const db = mongoose.connection
+const RestaurantList = require('./models/restaurant')
 
 // connect to mongoDB
 db.on('error', () => {
@@ -27,12 +29,19 @@ app.use(express.urlencoded({ extended: true }))
 
 // routes setting
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results})
+  RestaurantList.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
 })
 
-app.get('/restaurants/:id', (req, res) => {
-  const selectedRestaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.id)
-  res.render('show', {restaurant: selectedRestaurant})
+app.get('/restaurants/:id/detail', (req, res) => {
+  const id = req.params.id
+  return RestaurantList.findById(id)
+    .lean()
+    .then(restaurant => res.render('show', {restaurant}))
+  // const selectedRestaurant = restaurantList.results.find(restaurant => restaurant._id.toString() === req.params.id)
+  // res.render('show', {restaurant: selectedRestaurant})
 })
 
 app.get('/search', (req, res) => {

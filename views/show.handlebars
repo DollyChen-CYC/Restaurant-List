@@ -37,6 +37,12 @@
       <img class="rounded mx-auto d-block mb-4 w-100"
         src="{{restaurant.image}}" alt="{{restaurant.name}}"
         style="max-width: 600px;">
+
+      <div class="row actions justify-content-end mb-3 mr-2">
+        <a class="btn mr-1 btn-info" href="/">Home</a>
+        <a class="btn mr-1 btn-secondary" href="/restaurants/{{this._id}}/edit">Edit</a>
+        <a class="btn mr-1 btn-danger" href="/restaurants/{{this._id}}/delete">Delete</a>
+      </div>
     </div>
   </div>
 </div>
