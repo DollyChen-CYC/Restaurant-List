@@ -34,31 +34,4 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-router.get('/search', (req, res) => {
-  // TODO: Refactor search feature.  Use fuzzy searching with mongoose.
-  const restaurantList = require('../../restaurant_list.json')
-  const keyword = req.query.keyword
-  const keywordArr = keyword.trim().toLowerCase().split(' ')
-  const searchResults = []
-  let showErrorMsg = false
-
-  // compare search keywords
-  for (restaurant of restaurantList.results) {
-    const { name, name_en, category, location } = restaurant 
-    const infoArr = [name, name_en, category, location]
-
-    for (word of keywordArr) {
-      if (infoArr.some(info => info.toLowerCase().includes(word)) && !searchResults.includes(restaurant)) {
-        searchResults.push(restaurant)
-      }
-    }
-  }
-
-  if (searchResults.length === 0) {
-    showErrorMsg = true
-  }
-  // render page
-  res.render('index', { restaurants: searchResults, keyword, showErrorMsg })
-})
-
 module.exports = router
