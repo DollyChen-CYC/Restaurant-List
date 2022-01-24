@@ -2,6 +2,7 @@ const Restaurant = require('../restaurant')
 const User = require('../user')
 const restaurantList = require('../../restaurant_list.json')
 const db = require('../../config/mongoose')
+const bcrypt = require('bcryptjs')
 
 const seedRestaurants = restaurantList.results.map(restaurant => {
   return {
@@ -17,16 +18,25 @@ const seedRestaurants = restaurantList.results.map(restaurant => {
   }
 })
 
+const seedAdmin = {
+  email: 'root@example.com',
+  password: '12345678'
+}
+
 db.once('open', () => {
-  Promise.all(
-    [
-      User.create({
-        email: 'root@example.com',
-        password: '12345678'
+  Promise.all([
+    bcrypt
+      .genSalt(10)
+      .then(salt => bcrypt.hash(seedAdmin.password, salt))
+      .then(hash => {
+        seedAdmin.password = hash
+        return User.create(seedAdmin)
       }),
-      Restaurant.insertMany(seedRestaurants)
-    ]
-  )
-    .then(() => console.log('done'))
+    Restaurant.insertMany(seedRestaurants)
+  ])
+    .then(() => {
+      console.log('done')
+      process.exit()
+    })
     .catch(error => console.log(error))
 })
