@@ -3,6 +3,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const usePassport = require('./config/passport')
+const setLocals = require('./midleware/setLocals')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const app = express()
@@ -23,6 +24,7 @@ app.use(session({
   saveUninitialized: true
 }))
 usePassport(app)
+setLocals(app)
 
 // setting body-parser
 app.use(express.urlencoded({ extended: true }))

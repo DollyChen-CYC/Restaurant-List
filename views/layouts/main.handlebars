@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,22 +10,25 @@
   <link rel="stylesheet" href="/stylesheets/fontawesome_all.css">
   <title>Restaurant List</title>
 </head>
+
 <body>
-  
   <header>
     <!-- navigation -->
     <nav class="navbar navbar-light bg-light fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/">
-          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
-            width="30" height="30" class="d-inline-block align-top" alt="好。吃">
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30" height="30"
+            class="d-inline-block align-top" alt="好。吃">
           我的餐廳清單
         </a>
+        {{#if isAuthenticated}}
         <a href="/users/logout" class="btn btn-info">登出</a>
+        {{/if}}
       </div>
     </nav>
-  
+    {{#if isAuthenticated}}
     <div class="banner"></div>
+    {{/if}}
   </header>
 
   <!-- Partial templates will replace the below "body" part -->
@@ -35,4 +39,5 @@
   <script src="/javascripts/popper.js"></script>
   <script src="/javascripts/bootstrap.js"></script>
 </body>
+
 </html>
