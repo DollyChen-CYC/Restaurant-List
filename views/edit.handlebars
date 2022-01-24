@@ -1,0 +1,114 @@
+<h1 class='mb-1 restaurant-show-title'>{{restaurant.name}}</h1>
+<div class='container'>
+  <form class='row' action='/restaurants/{{restaurant._id}}?_method=PUT' method="POST">
+    <div class='col-12 col-md-10 mx-auto'>
+
+      <p class='mb-4'>
+        <label class='text-secondary' for='name'>
+          <i class='fas fa-building pr-2'></i>
+          餐廳名稱：
+        </label>
+        <input
+          class='form-control my-1'
+          type='text'
+          name='name'
+          id='name'
+          value='{{restaurant.name}}'
+        />
+      </p>
+
+      <p class='mb-4'>
+        <label class='text-secondary' for='name_en'>
+          <i class='fas fa-building pr-2'></i>
+          餐廳英文名稱：
+        </label>
+        <input
+          class='form-control my-1'
+          type='text'
+          name='name_en'
+          id='name_en'
+          value='{{restaurant.name_en}}'
+        />
+      </p>
+
+      <p class='mb-4'>
+        <label class='text-secondary' for='category'>
+          <i class='fas fa-utensils pr-2'></i>
+          類別：
+        </label>
+        <input
+          class='form-control my-1'
+          type='text'
+          name='category'
+          id='category'
+          value='{{restaurant.category}}'
+        />
+      </p>
+
+      <p class='mb-4'>
+        <label class='text-secondary' for='location'>
+          <i class='fas fa-map-marker-alt pr-2'></i>
+          地址：
+        </label>
+        <input
+          class='form-control my-1'
+          type='text'
+          name='location'
+          id='location'
+          value='{{restaurant.location}}'
+        />
+      </p>
+
+      <p class='mb-4'>
+        <label class='text-secondary' for='phone'>
+          <i class='fas fa-mobile-alt pr-2'></i>
+          電話：
+        </label>
+        <input
+          class='form-control my-1'
+          type='text'
+          name='phone'
+          id='phone'
+          value='{{restaurant.phone}}'
+        />
+      </p>
+
+      <p class='mb-4'>
+        <label for='description' class='text-secondary'><i
+            class='fas fa-bullhorn pr-2'
+          ></i>餐廳簡介：</label>
+        <input
+          class='form-control my-1'
+          type='text'
+          name='description'
+          id='description'
+          value='{{restaurant.description}}'
+        />
+      </p>
+
+      <p class='mb-4'>
+        <label for='image' class='text-secondary'><i
+            class='fas fa-link pr-2'
+          ></i>圖片網址：</label>
+        <input
+          class='form-control mt-1 mb-4'
+          type='text'
+          name='image'
+          id='image'
+          value='{{restaurant.image}}'
+        />
+      </p>
+
+      <div class='row actions justify-content-end mb-3 mr-2'>
+        <button
+          type='submit'
+          class='btn mr-1 btn-success text-light'
+        >Save</button>
+        <a
+          class='btn mr-1 btn-primary'
+          href='/restaurants/{{restaurant._id}}/detail'
+        >Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
