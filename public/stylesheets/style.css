@@ -4,6 +4,10 @@ header {
   overflow: hidden;
 }
 
+.navbar {
+  box-shadow: 2px 2px 5px 5px rgba(152, 159, 165, 0.1);
+}
+
 .navbar .navbar-brand {
   color: #4592af;
 }
