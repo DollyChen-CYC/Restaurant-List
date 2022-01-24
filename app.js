@@ -8,7 +8,11 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const app = express()
 const routes = require('./routes')
-const port = 3000
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const port = process.env.PORT
 
 // connect to mongoDB
 require('./config/mongoose')
@@ -19,7 +23,7 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.use(session({
-  secret: 'restaurantSecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
